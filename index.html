@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Attendance Names</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="navbar.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="report.html">Attendance Report</a>
+        <a href="index.html" class="active">Manage Names</a>
+        <a href="signature.html">Signature Form</a>
+    </nav>
+    <section class="names-form-section">
+        <h2>Manage Attendance Names</h2>
+        <p>Enter up to 18 names for the attendance report.</p>
+        <form id="namesForm" class="names-form">
+            <table border="1" class="names-table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody id="namesTableBody">
+                    <!-- Dynamically populated by JavaScript -->
+                </tbody>
+            </table>
+            <div class="button-group">
+                <button type="submit" class="btn-primary">Save Names</button>
+                <button type="button" id="clearNames" class="btn-secondary">Clear Names</button>
+            </div>
+        </form>
+    </section>
+    <script src="script.js"></script>
+    <script>
+        // Highlight current page in navbar
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.navbar a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.href === window.location.href) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
