@@ -1,3 +1,4 @@
+// script.js
 document.addEventListener('DOMContentLoaded', () => {
   console.log('script.js: DOM loaded');
   
@@ -5,8 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('namesForm');
   const clearButton = document.getElementById('clearNames');
   const maxRows = 18; // Maximum number of names allowed
+
+  const defaultTitles = [
+    'PRESENSI KEHADIRAN PESERTA',
+    'SYURA PENGURUS HARIAN TETAP 6',
+    'MASA BAKTI 2024/2025'
+  ];
   
-  // Function to populate the table with input fields
+  // Function to populate the table with input fields and titles
   function populateTable() {
     tableBody.innerHTML = ''; // Clear existing rows
     const savedNames = JSON.parse(localStorage.getItem('attendanceNames')) || [];
@@ -19,9 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
       tableBody.appendChild(row);
     }
     console.log('script.js: Table populated with', maxRows, 'rows');
+
+    // Populate titles
+    const savedTitles = JSON.parse(localStorage.getItem('reportTitles')) || defaultTitles;
+    document.getElementById('title1').value = savedTitles[0] || '';
+    document.getElementById('title2').value = savedTitles[1] || '';
+    document.getElementById('title3').value = savedTitles[2] || '';
+    console.log('script.js: Titles populated:', savedTitles);
   }
   
-  // Function to save names to localStorage
+  // Function to save names and titles to localStorage
   function saveNames() {
     const inputs = document.querySelectorAll('.name-input');
     const names = Array.from(inputs)
@@ -33,19 +47,30 @@ document.addEventListener('DOMContentLoaded', () => {
       console.warn('script.js: No valid names to save');
       return;
     }
+
+    // Save titles
+    const titles = [
+      document.getElementById('title1').value.trim(),
+      document.getElementById('title2').value.trim(),
+      document.getElementById('title3').value.trim()
+    ].filter(title => title !== '');
+
     localStorage.setItem('attendanceNames', JSON.stringify(names));
+    localStorage.setItem('reportTitles', JSON.stringify(titles.length > 0 ? titles : []));
     console.log('script.js: Names saved to localStorage:', names);
-    alert('Names saved successfully! They will appear in the attendance report and signature form.');
+    console.log('script.js: Titles saved to localStorage:', titles);
+    alert('Names and titles saved successfully! They will appear in the attendance report and signature form.');
     window.dispatchEvent(new CustomEvent('namesUpdate')); // Trigger custom event
   }
   
-  // Function to clear names from localStorage and table
+  // Function to clear names and titles from localStorage and table
   function clearNames() {
-    if (confirm('Are you sure you want to clear all names? This action cannot be undone.')) {
+    if (confirm('Are you sure you want to clear all names and titles? This action cannot be undone.')) {
       localStorage.removeItem('attendanceNames');
+      localStorage.removeItem('reportTitles');
       populateTable();
       window.dispatchEvent(new CustomEvent('namesUpdate'));
-      console.log('script.js: Names cleared and namesUpdate dispatched');
+      console.log('script.js: Names and titles cleared and namesUpdate dispatched');
     }
   }
   
@@ -66,6 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
     console.error('script.js: Clear names button not found');
   }
   
-  // Initial population of the table
+  // Initial population of the table and titles
   populateTable();
 });
