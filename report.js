@@ -2,6 +2,23 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('report.js: DOM loaded');
 
+    const defaultTitles = [
+        'PRESENSI KEHADIRAN PESERTA',
+        'SYURA PENGURUS HARIAN TETAP 6',
+        'MASA BAKTI 2024/2025'
+    ];
+
+    // Load titles from localStorage or use defaults
+    function loadTitles() {
+        const savedTitles = JSON.parse(localStorage.getItem('reportTitles')) || [];
+        const titles = savedTitles.length === 3 ? savedTitles : defaultTitles;
+        const h4s = document.querySelectorAll('.header h4');
+        h4s.forEach((h4, i) => {
+            h4.textContent = titles[i] || defaultTitles[i];
+        });
+        console.log('report.js: Titles loaded:', titles);
+    }
+
     // Load names from localStorage or use default if none exist
     let rowHeaderNames = JSON.parse(localStorage.getItem('attendanceNames')) || [
     ];
@@ -281,6 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Initial setup
+    loadTitles();
     generateTableRows();
     setDynamicDate();
     loadSignaturesAndKeterangan();
@@ -290,6 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('storage', () => {
         console.log('report.js: Storage event triggered');
         loadSignaturesAndKeterangan();
+        loadTitles();
     });
     window.addEventListener('storageUpdate', () => {
         console.log('report.js: storageUpdate event triggered');
@@ -302,6 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rowHeaderNames.push(...newNames.slice(0, 18));
         generateTableRows();
         loadSignaturesAndKeterangan();
+        loadTitles();
         console.log('report.js: Table updated with new names:', rowHeaderNames);
     });
 
