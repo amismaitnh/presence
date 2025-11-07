@@ -32,6 +32,16 @@ body {
     letter-spacing: 2px;
 }
 
+.names-form-section h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #9ae01e;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 .names-form-section p {
     font-size: 1rem;
     color: #FFFFFF;
@@ -93,6 +103,41 @@ body {
     outline: none;
 }
 
+.titles-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #9ae01e;
+}
+
+.title-input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.title-input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333333;
+}
+
+.title-input {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #9ae01e;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    color: #333333;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.title-input:focus {
+    border-color: #736d28;
+    box-shadow: 0 0 8px rgba(115, 109, 40, 0.5);
+    outline: none;
+}
+
 .button-group {
     display: flex;
     justify-content: center;
@@ -142,6 +187,10 @@ body {
         font-size: 2rem;
     }
 
+    .names-form-section h3 {
+        font-size: 1.3rem;
+    }
+
     .names-form {
         padding: 20px;
     }
@@ -149,6 +198,14 @@ body {
     .names-table th, .names-table td {
         font-size: 0.9rem;
         padding: 8px;
+    }
+
+    .title-input-group label {
+        font-size: 0.9rem;
+    }
+
+    .title-input {
+        font-size: 0.9rem;
     }
 
     .btn-primary, .btn-secondary {
