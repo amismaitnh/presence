@@ -17,6 +17,25 @@ body {
     background-color: #fff;
 }
 
+.signature-section {
+    position: relative;
+    width: 80%;
+    max-width: 520px;
+    margin: 30px auto 10px auto;
+    height: 20px;
+}
+
+.signature-section::before {
+    content: '';
+    position: absolute;
+    top: -30.5px;
+    left: 65px;
+    right: 65px;
+    height: 1px;
+    background: black;
+    transform: translateY(-50%);
+}
+
 .container {
     text-align: center;
     padding: 20mm;
