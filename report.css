@@ -8,32 +8,14 @@
 }
 
 body {
-    margin-top: 60px;
+    margin: 0;
+    padding: 0;
+    background: #f0f0f0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     min-height: 100vh;
-    margin: 0;
-    background-color: #fff;
-}
-
-.signature-section {
-    position: relative;
-    width: 80%;
-    max-width: 520px;
-    margin: 30px auto 10px auto;
-    height: 20px;
-}
-
-.signature-section::before {
-    content: '';
-    position: absolute;
-    top: -30.5px;
-    left: 65px;
-    right: 65px;
-    height: 1px;
-    background: black;
-    transform: translateY(-50%);
+    padding-top: 80px; /* space for buttons */
 }
 
 .container {
@@ -42,12 +24,17 @@ body {
     background-color: white;
     border: 1px solid #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 210mm;
-    min-height: 297mm;
+    
+    /* EXACT A4 size at 96 DPI (standard web DPI) */
+    width: 794px;      /* 210mm × 3.779 = ~794px */
+    height: 1123px;    /* 297mm × 3.779 = ~1123px */
+    
     margin: 0 auto;
     box-sizing: border-box;
     position: relative;
-    z-index: 1;
+    overflow: hidden;         /* Critical: prevent any overflow */
+    page-break-inside: avoid; /* Helps if you ever print */
+    transform-origin: top left;
 }
 
 .header {
@@ -174,44 +161,23 @@ td:nth-child(5) { background-color: #fff; width: 17%; font-size: 13px; }
 .middle { width: 520px; height: 2.5px; margin-top: -7px; }
 .lower { width: 530px; height: 2px; margin-top: -7px; margin-bottom: 10px; }
 
-.btn-clear-signatures,
 .btn-download-paper {
     position: fixed;
-    top: 70px;
-    padding: 10px 20px;
+    top: 15px;
+    paddingx : 10px 20px;
     border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: transform 0.2s, background 0.3s, color 0.3s;
+    cursor: none;
+    background: transparent;
+    border: none;
     z-index: 1001;
-}
-
-.btn-clear-signatures {
-    left: 20px;
-    background: linear-gradient(45deg, #2a2a2a, var(--dark));
-    border: 2px solid var(--secondary);
-    color: var(--secondary);
-}
-
-.btn-clear-signatures:hover {
-    transform: scale(1.05);
-    background: var(--secondary);
-    color: var(--dark);
-}
-
-.btn-download-paper {
     right: 20px;
-    background: linear-gradient(45deg, var(--secondary), var(--primary));
-    border: 2px solid var(--secondary);
-    color: #fff;
+color: var(--text);
 }
 
 .btn-download-paper:hover {
     transform: scale(1.05);
-    background: var(--primary);
-    color: #fff;
+    color: var(--secondary);
+    transition: .1s;
 }
 
 .keterangan {
@@ -226,3 +192,37 @@ td:nth-child(5) { background-color: #fff; width: 17%; font-size: 13px; }
 }
 
 .keterangan:focus { outline: none; }
+
+@media print {
+    body, .container {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .container {
+        width: 210mm !important;
+        height: 297mm !important;
+        padding: 20mm;
+    }
+    .btn-clear-signatures, .btn-download-paper, nav {
+        display: none !important;
+    }
+}
+
+.signature-section {
+    position: relative;
+    width: 80%;
+    max-width: 520px;
+    margin: 30px auto 10px auto;
+    height: 20px;
+}
+
+.signature-section::before {
+    content: '';
+    position: absolute;
+    top: -30.5px;
+    left: 65px;
+    right: 65px;
+    height: 1px;
+    background: black;
+    transform: translateY(-50%);
+}
