@@ -5,10 +5,23 @@
     box-sizing: border-box;
 }
 
+        :root {
+            --primary: #736b23;
+            --secondary: #9ade24;
+            --accent: #f5de3e;
+            --light: #ecf0f1;
+            --dark: #0d0a06;
+            --text: #333;
+            --text-light: #777;
+            --gold: #FFD700;
+            --silver: #C0C0C0;
+            --bronze: #CD7F32;
+        }
+
 body {
     font-family: 'Poppins', sans-serif;
     color: #FFFFFF;
-    background-color: #736d28;
+    background-color: white;
     margin: 0;
     overflow-x: hidden;
     font-weight: 400;
@@ -24,22 +37,11 @@ body {
 .names-form-section h2 {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 2.5rem;
-    color: #9ae01e;
-    text-shadow: 0 0 10px #9ae01e;
+    font-size: 2rem;
+    color: var(--text);
     margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 2px;
-}
-
-.names-form-section h3 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 1.5rem;
-    color: #9ae01e;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
 .names-form-section p {
@@ -52,14 +54,13 @@ body {
     background-color: #FFFFFF;
     padding: 40px;
     border-radius: 10px;
-    border: 2px solid #9ae01e;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .names-form:hover {
     transform: translateY(-10px);
-    box-shadow: 0 12px 30px rgba(154, 224, 30, 0.5);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .names-table {
@@ -69,15 +70,14 @@ body {
 }
 
 .names-table th, .names-table td {
-    border: 1px solid #9ae01e;
     padding: 10px;
     text-align: left;
     font-size: 1rem;
-    color: #333333;
+    color: var(--text);
 }
 
 .names-table th {
-    background-color: #f8f9fa;
+    background-color: #fff;
     font-weight: 600;
     text-transform: uppercase;
 }
@@ -89,28 +89,23 @@ body {
 .names-table input {
     width: 100%;
     padding: 8px;
-    border: 2px solid #9ae01e;
     border-radius: 5px;
     font-size: 1rem;
     font-family: 'Poppins', sans-serif;
-    color: #333333;
+    color: var(--text);
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .names-table input:focus {
-    border-color: #736d28;
-    box-shadow: 0 0 8px rgba(115, 109, 40, 0.5);
     outline: none;
 }
 
 .titles-section {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #9ae01e;
+    padding: 0 0 30px;
 }
 
 .title-input-group {
-    margin-bottom: 15px;
+    margin-top: 10px;
     text-align: left;
 }
 
@@ -118,23 +113,20 @@ body {
     display: block;
     margin-bottom: 5px;
     font-weight: 600;
-    color: #333333;
+    color: var(--text);
 }
 
 .title-input {
     width: 100%;
     padding: 8px;
-    border: 2px solid #9ae01e;
     border-radius: 5px;
     font-size: 1rem;
     font-family: 'Poppins', sans-serif;
-    color: #333333;
+    color: var(--text);
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .title-input:focus {
-    border-color: #736d28;
-    box-shadow: 0 0 8px rgba(115, 109, 40, 0.5);
     outline: none;
 }
 
@@ -145,41 +137,43 @@ body {
 }
 
 .btn-primary {
-    background: linear-gradient(45deg, #9ae01e, #736d28);
-    border: none;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
+    display: inline-block;
     padding: 12px 30px;
+    background: var(--secondary);
+    color: white;
+    border: none;
     border-radius: 5px;
-    color: #FFFFFF;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.3s;
+    cursor: none;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px #f7df3a;
+    background: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary {
-    background: linear-gradient(45deg, #2a2a2a, #1a1a1a);
-    border: 2px solid #9ae01e;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    padding: 10px 20px;
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--secondary);
+    color: white;
+    border: none;
     border-radius: 5px;
-    color: #9ae01e;
-    cursor: pointer;
-    transition: background 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
+    cursor: none;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
-    background: #9ae01e;
-    color: #2a2a2a;
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(154, 224, 30, 0.7);
+    background: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {
